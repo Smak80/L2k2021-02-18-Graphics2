@@ -32,6 +32,9 @@ namespace L2k2021_02_18_Graphics2
             this.mainPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.savePictureDialog = new System.Windows.Forms.SaveFileDialog();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.openPictureDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -45,6 +48,7 @@ namespace L2k2021_02_18_Graphics2
             this.mainPanel.Size = new System.Drawing.Size(745, 424);
             this.mainPanel.TabIndex = 0;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
+            this.mainPanel.Resize += new System.EventHandler(this.mainPanel_Resize);
             // 
             // button1
             // 
@@ -64,15 +68,35 @@ namespace L2k2021_02_18_Graphics2
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
+            this.button2.Text = "Сохранить";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // savePictureDialog
+            // 
+            this.savePictureDialog.Filter = "JPG-файлы|*.jpg|PNG-файлы|*.png";
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoad.Location = new System.Drawing.Point(468, 443);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.TabIndex = 3;
+            this.btnLoad.Text = "Загрузить";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // openPictureDialog
+            // 
+            this.openPictureDialog.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 478);
+            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.mainPanel);
@@ -87,6 +111,9 @@ namespace L2k2021_02_18_Graphics2
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.SaveFileDialog savePictureDialog;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.OpenFileDialog openPictureDialog;
     }
 }
 

@@ -22,12 +22,11 @@ namespace L2k2021_02_18_Graphics2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            mainPanel.Refresh();
-            if (sender == button2)
+            savePictureDialog.OverwritePrompt = true;
+            if (savePictureDialog.ShowDialog() == DialogResult.OK)
             {
-                var gr = Graphics.FromImage(p.Img);
-                gr.FillRectangle(new SolidBrush(Color.Black), 0, 0, 200, 200);
-                p.Img.Save(@"C:\Smak\Desktop\1.jpg");
+                var filename = savePictureDialog.FileName;
+                p.Img.Save(filename);
             }
         }
 
@@ -36,5 +35,19 @@ namespace L2k2021_02_18_Graphics2
             p.Paint(mainPanel.CreateGraphics());
         }
 
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            if (openPictureDialog.ShowDialog() == DialogResult.OK)
+            {
+                var filename = openPictureDialog.FileName;
+                p.Img = Image.FromFile(filename);
+                mainPanel.Refresh();
+            }
+        }
+
+        private void mainPanel_Resize(object sender, EventArgs e)
+        {
+            mainPanel.Refresh();
+        }
     }
 }

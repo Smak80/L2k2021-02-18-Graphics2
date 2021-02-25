@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace L2k2021_02_18_Graphics2
 {
@@ -15,12 +11,7 @@ namespace L2k2021_02_18_Graphics2
         private int vertexSize = 30;
         private int vertexCount = 1;
         //private RectangleF sr;
-        private Image img;
-        public Image Img
-        {
-            get => img;
-            private set => img = value;
-        }
+        public Image Img = null;
 
         public int VertexCount
         {
@@ -42,12 +33,24 @@ namespace L2k2021_02_18_Graphics2
 
         public void Paint(Graphics g)
         {
-            Img = new Bitmap((int)g.VisibleClipBounds.Width, (int)g.VisibleClipBounds.Height);
-            Graphics ig = Graphics.FromImage(Img);
-            ig.SmoothingMode = SmoothingMode.AntiAlias;
-            DrawVertices(ig);
+            if (Img == null)
+            {
+                Img = new Bitmap(
+                    (int) g.VisibleClipBounds.Width,
+                    (int) g.VisibleClipBounds.Height);
+                var ig = Graphics.FromImage(Img);
+                ig.SmoothingMode = SmoothingMode.AntiAlias;
+                DrawVertices(ig);
+            }
             g.Clear(Color.White);
-            g.DrawImage(Img, 0, 0);
+            g.DrawImage(Img, 
+                new PointF[]
+                {
+                    new PointF(0, 0), 
+                    new PointF(g.VisibleClipBounds.Width, 0),
+                    new PointF(0, g.VisibleClipBounds.Height),
+                    //new PointF(g.VisibleClipBounds.Width, g.VisibleClipBounds.Height)
+                });
         }
 
         private void DrawVertices(Graphics g)
